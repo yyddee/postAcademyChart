@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: lab03-jenkins-pv
+  namespace: lab03
+  labels:
+    type: local
+spec:
+  storageClassName: jenkins
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: opt/lab03/jekins
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: lab03-jenkins-pvc
+  namespace: lab03
+spec:
+  storageClassName: jenkins
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 8Gi
